@@ -21,9 +21,9 @@ jobs:
       - name: Upload via FTPS
         env:
           FTP_SERVER: ${{ secrets.SSH_HOST }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+          FTP_USERNAME: ${{ secrets.username }}
+          FTP_PASSWORD: ${{ secrets.password }}
+          FTP_SERVER_DIR: ${{ secrets.folder }}
         shell: bash
         run: |
           set -euo pipefail
@@ -32,6 +32,9 @@ jobs:
             echo "Missing one of: SSH_HOST, username, password, folder"
             exit 1
           fi
+
+          echo "Connecting to ${FTP_SERVER} as ${FTP_USERNAME}"
+          echo "Target folder: ${FTP_SERVER_DIR}"
 
           lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftps://$FTP_SERVER:21" <<EOF
           set ftp:ssl-force true
