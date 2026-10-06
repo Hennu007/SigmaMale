@@ -20,13 +20,18 @@ jobs:
 
       - name: Upload via FTPS
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: githubdeploy.siimsander.eu
-          FTP_PASSWORD: "%gPh~4dBz49DL_;"
-          FTP_SERVER_DIR: htdocs
+          FTP_SERVER: ${{ SSH_HOST }}
+          FTP_USERNAME: ${{ username }}
+          FTP_PASSWORD: ${{ password }}
+          FTP_SERVER_DIR: ${{ folder }}
         shell: bash
         run: |
           set -euo pipefail
+
+          if [[ -z "${FTP_SERVER:-}" || -z "${FTP_USERNAME:-}" || -z "${FTP_PASSWORD:-}" || -z "${FTP_SERVER_DIR:-}" ]]; then
+            echo "Missing one of: SSH_HOST, username, password, folder"
+            exit 1
+          fi
 
           lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftps://$FTP_SERVER:21" <<EOF
           set ftp:ssl-force true
