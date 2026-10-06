@@ -20,10 +20,10 @@ jobs:
 
       - name: Upload via FTPS
         env:
-          FTP_SERVER: ${{ SSH_HOST }}
-          FTP_USERNAME: ${{ username }}
-          FTP_PASSWORD: ${{ password }}
-          FTP_SERVER_DIR: ${{ folder }}
+          FTP_SERVER: ${{ secrets.SSH_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
         shell: bash
         run: |
           set -euo pipefail
