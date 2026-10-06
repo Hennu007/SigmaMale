@@ -1,4 +1,90 @@
 <!doctype html>
+<html lang="et">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kodutöö Planeerija</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header class="app-header">
+            <h1>Kodutöö Planeerija</h1>
+            <div class="header-controls">
+                <button id="themeToggle" aria-label="Toggle theme">🌓</button>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="panel add-panel">
+                <form id="taskForm">
+                    <div class="row">
+                        <div class="field">
+                            <label for="subject">Õppeaine</label>
+                            <input id="subject" required placeholder="Matemaatika">
+                        </div>
+                        <div class="field">
+                            <label for="dueDate">Tähtaeg</label>
+                            <input id="dueDate" type="date" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="description">Kirjeldus</label>
+                        <textarea id="description" rows="2" placeholder="Lisa detailne info..."></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="field">
+                            <label for="priority">Prioriteet</label>
+                            <select id="priority">
+                                <option value="low">Madala</option>
+                                <option value="medium" selected>Keskmine</option>
+                                <option value="high">Kõrge</option>
+                            </select>
+                        </div>
+                        <div class="field actions">
+                            <button type="submit" class="btn primary">Lisa ülesanne</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <section class="panel controls-panel">
+                <div class="filters">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="all">Kõik</button>
+                        <button class="filter-btn" data-filter="inprogress">Tegemisel</button>
+                        <button class="filter-btn" data-filter="done">Tehtud</button>
+                    </div>
+                    <div class="sort-group">
+                        <label for="sortOrder">Sorteeri</label>
+                        <select id="sortOrder">
+                            <option value="dueAsc">Tähtaeg ↑</option>
+                            <option value="dueDesc">Tähtaeg ↓</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="progress-wrap">
+                    <div class="progress-label">Edusammud</div>
+                    <div class="progress">
+                        <div class="progress-bar" id="progressBar" style="width:0%"></div>
+                    </div>
+                    <div class="progress-percent" id="progressPercent">0%</div>
+                </div>
+            </section>
+
+            <section class="panel list-panel">
+                <ul id="tasksList" class="tasks-list" aria-live="polite"></ul>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <small>Salvestatud kohalikku mällu. Sobib mobiilile ja töölauale.</small>
+        </footer>
+
+        <script src="app.js" defer></script>
+    </body>
+</html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
