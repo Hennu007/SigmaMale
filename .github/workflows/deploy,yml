@@ -25,6 +25,6 @@ jobs:
           lftp -u ${{ secrets.SFTP_USERNAME }}, sftp://${{ secrets.SFTP_SERVER }} <<'EOF'
           set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key"
           set net:max-retries 3
-          mirror --reverse --delete --exclude-glob .git* --exclude-glob .github* . /data01/virt119213/domeenid/www.sinudomeem.tld/alamkaustanimi
+          mirror --reverse --delete --exclude-glob .git* --exclude-glob .github* . /data01/virt11921virt150874/domeenid/www.siimsander.eu
           bye
           EOF
