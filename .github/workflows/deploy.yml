@@ -36,7 +36,7 @@ jobs:
           echo "Connecting to ${FTP_SERVER} as ${FTP_USERNAME}"
           echo "Target folder: ${FTP_SERVER_DIR}"
 
-          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftps://$FTP_SERVER:21" <<EOF
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftps://$FTP_SERVER:990" <<EOF
           set ftp:ssl-force true
           set ftp:ssl-protect-data true
           set ssl:verify-certificate no
